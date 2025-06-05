@@ -54,6 +54,19 @@ router.post("/upload", async (req, res) => {
   }
 });
 
+// Get all uploaded Excel files (metadata only)
+router.get("/", async(req, res) => {
+  try{
+    const files = await ExcelData.find().select("-data")// Exclude the large data field for list view
+    .sort({ uploadedAt: -1})
+    .limit(50); // Limit to recent 50 files
+    res.json(files);
+  } catch (error) {
+    res.status(500).json({ error: "Cannot get files"});
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Get uploaded file data by ID
 router.get("/:id", async (req, res) => {
   try {
