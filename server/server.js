@@ -13,7 +13,7 @@ app.use(fileUpload());
 //Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/files', require('./routes/files'));
-app.use('/api/charts', require('./routes/charts'));
+//app.use('/api/charts', require('./routes/charts'));
 
 // Connect to DataBase
 mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
